@@ -1,12 +1,13 @@
 import React from 'react'
 import Book from './Book'
+import {BASE_URL} from '../config'
 
 export default class extends React.Component {
     constructor(props){
         super(props)
         this.state = {
             books: [],
-            url: "https://api-fxyqdjwfth.now.sh/books"
+            url: BASE_URL + "/read-books"
         }
     }
 
@@ -14,13 +15,13 @@ export default class extends React.Component {
         const response = await fetch(this.state.url, {method: 'GET'});
         console.log(this.state.url);
         const responseJSON = await response.json();
-        const books = responseJSON.map(book => <Book book={book}/>)
+        const books = responseJSON.map(dbItem => <Book content={dbItem}/>)
         this.setState({books: books})
     }
 
     render(){
         return (
-            <div>
+            <div className="flexbox">
                 {this.state.books}
             </div>
         )

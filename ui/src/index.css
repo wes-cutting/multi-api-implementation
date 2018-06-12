@@ -4,3 +4,13 @@ body {
   font-family: sans-serif;
   text-align: center;
 }
+
+.flexbox {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.book {
+  border-style: double;
+}
