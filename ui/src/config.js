@@ -1,1 +1,1 @@
-export const BASE_URL = "https://api-qisdejmpqn.now.sh"
+export const BASE_URL = "https://api-vvdnqehlez.now.sh"

@@ -1,6 +1,7 @@
 const { send, json } = require('micro')
 // import { send } from 'micro' // Showing an ES6 import below ES5 import
 const { router, get, post, put, del } = require('microrouter')
+const cors = require('micro-cors')()
 const monk = require('monk')
 
 const url = 'mongodb://heliopeep:passw0rd@ds151530.mlab.com:51530/fs-intro'
@@ -35,7 +36,7 @@ const getAllBooks = async (req, res) => {
 const updateBook = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     const body = await json(req)
-    const dataToSend = await collection.update({ _id: body._id }, { title: body.title, author: body.author })
+    const dataToSend = await collection.update({ _id: body.id }, { title: body.title, author: body.author })
 
     send(res, 200, dataToSend)
 }
@@ -43,8 +44,7 @@ const updateBook = async (req, res) => {
 // Delete a specific book
 const deleteBook = async (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    const body = await json(req)
-    const dataToSend = await collection.remove({ _id: body._id })
+    const dataToSend = await collection.remove({ _id: req.params.id })
 
     send(res, 200, dataToSend)
 }
@@ -53,11 +53,13 @@ const hello = (req, res) => send(res, 200, `Hello ${req.params.name}`)
 
 const notfound = (req, res) => send(res, 404, 'Not found route')
 
-module.exports = router(
-    get('/read-books', getAllBooks),
-    post('/create-book', createBook),
-    put('/update-book', updateBook),
-    del('/delete-book', deleteBook),
-    get('/hello/:name', hello),
-    get('/*', notfound)
+module.exports = cors(
+    router(
+        get('/read-books', getAllBooks),
+        post('/create-book', createBook),
+        put('/update-book', updateBook),
+        del('/delete-book/:id', deleteBook),
+        get('/hello/:name', hello),
+        get('/*', notfound)
+    )
 )
