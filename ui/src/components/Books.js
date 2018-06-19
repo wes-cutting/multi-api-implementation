@@ -7,7 +7,7 @@ export default class extends React.Component {
         super(props)
         this.state = {
             books: [],
-            url: BASE_URL + "/read-books"
+            url: BASE_URL + "/books"
         }
     }
 

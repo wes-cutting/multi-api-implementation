@@ -3,8 +3,8 @@ import {BASE_URL} from '../config'
 
 export default class extends Component {
     state = {
-        deleteURL: BASE_URL + "/delete-book/" + this.props.content._id,
-        updateURL: BASE_URL + "/update-book",
+        deleteURL: BASE_URL + "/books/" + this.props.content._id,
+        updateURL: BASE_URL + "/books",
         isUpdating : false,
         updateButton: "Update",
         title: this.props.content.title,

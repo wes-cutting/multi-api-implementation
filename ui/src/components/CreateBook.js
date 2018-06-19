@@ -5,19 +5,20 @@ export default class extends Component {
     state = {
         title: "",
         author: "",
-        url: BASE_URL + "/create-book"
+        url: BASE_URL + "/books"
     }
     submitHandler = async (event) => {
-        //event.preventDefault()
+        event.preventDefault()
         const body = {
             title: this.state.title,
             author: this.state.author
         }
+        console.log("Body: ", JSON.stringify(body))
         const response = await fetch(this.state.url, {
                 method: 'POST',
                 body: JSON.stringify(body)
             });
-        console.log(response)
+        console.log("Res: ",response)
     }
     render () {
         return (
