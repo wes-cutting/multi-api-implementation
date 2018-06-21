@@ -1,5 +1,5 @@
 {
-  "name": "api",
+  "name": "api-micro",
   "version": "0.0.1",
   "dependencies": {
     "micro": "^9.3.2",

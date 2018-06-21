@@ -10,7 +10,3 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
 }
-
-.book {
-  border-style: double;
-}

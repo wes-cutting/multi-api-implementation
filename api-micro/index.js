@@ -55,10 +55,10 @@ const notfound = (req, res) => send(res, 404, 'Not found route')
 
 module.exports = cors(
     router(
-        get('/read-books', getAllBooks),
-        post('/create-book', createBook),
-        put('/update-book', updateBook),
-        del('/delete-book/:id', deleteBook),
+        get('/books', getAllBooks),
+        post('/books', createBook),
+        put('/books', updateBook),
+        del('/books/:id', deleteBook),
         get('/hello/:name', hello),
         get('/*', notfound)
     )

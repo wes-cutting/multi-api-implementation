@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
 import { BASE_URL } from '../config'
 
 export default class extends Component {
@@ -13,21 +16,20 @@ export default class extends Component {
             title: this.state.title,
             author: this.state.author
         }
-        console.log("Body: ", JSON.stringify(body))
-        const response = await fetch(this.state.url, {
+        await fetch(this.state.url, {
                 method: 'POST',
                 body: JSON.stringify(body)
-            });
-        console.log("Res: ",response)
+        });
+        window.location.reload(true);
     }
     render () {
         return (
             <form onSubmit={this.submitHandler}>
-                <input type="text" placeholder="Title"
+                <TextField type="text" placeholder="Title"
                        onChange={event => this.setState({title: event.target.value})}/>
-                <input type="text" placeholder="Author"
+                <TextField type="text" placeholder="Author"
                        onChange={event => this.setState({author: event.target.value})}/>
-                <input type="submit"/>
+                <Button type="submit" variant="contained">Create</Button>
             </form>
         )
     }
