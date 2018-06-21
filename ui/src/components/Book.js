@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Card, Button, Input } from 'reactstrap';
+
 import {BASE_URL} from '../config'
 
 export default class extends Component {
@@ -36,9 +38,10 @@ export default class extends Component {
     updateBookForm = () => {
         return (
             <form>
-                <input type="text" value={this.state.title}//placeholder="Title"
+                <Input type="text" value={this.state.title}//placeholder="Title"
                        onChange={event => this.setState({title: event.target.value})}/>
-                <input type="text" value={this.state.author} // placeholder="Author"
+                <br/>
+                <Input type="text" value={this.state.author} // placeholder="Author"
                        onChange={event => this.setState({author: event.target.value})}/>
             </form>
         )
@@ -47,8 +50,8 @@ export default class extends Component {
     displayBook = () => {
         return (
             <div>
-                <p>Title: {this.state.title}</p>
-                <p>Author: {this.state.author}</p>
+                <h4>{this.state.title}</h4>
+                <h5>by: {this.state.author}</h5>
             </div>
         )
     }
@@ -57,17 +60,21 @@ export default class extends Component {
         const update = this.updateBookForm()
         const display = this.displayBook()
         return (
-            <div className="book">
-                <h3>New Book</h3>
+            <Card className="book" body inverse color="info">
+                <h3>This Book</h3>
                 { this.state.isUpdating ? update : display}
                 <form onSubmit={this.updateBook}>
-                    <input type="submit" value={this.state.updateButton}/>
+                    <Button className="rsButton" type="submit" color="primary">
+                        {this.state.updateButton}
+                    </Button>
                 </form>
                 <form onSubmit={this.deleteBook} hidden={this.state.isUpdating}>
-                    <input type="submit" value="Delete"/>
+                    <Button className="rsButton" type="submit" color="danger">
+                        Delete
+                    </Button>
                 </form>
 
-            </div>
+            </Card>
         )
     }
 }

@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import { Button, Input } from 'reactstrap';
+
 import { BASE_URL } from '../config'
 
 export default class extends Component {
@@ -13,21 +15,22 @@ export default class extends Component {
             title: this.state.title,
             author: this.state.author
         }
-        console.log("Body: ", JSON.stringify(body))
-        const response = await fetch(this.state.url, {
+        await fetch(this.state.url, {
                 method: 'POST',
                 body: JSON.stringify(body)
-            });
-        console.log("Res: ",response)
+        });
+        window.location.reload(true);
     }
     render () {
         return (
             <form onSubmit={this.submitHandler}>
-                <input type="text" placeholder="Title"
+                <Input type="text" placeholder="Title"
                        onChange={event => this.setState({title: event.target.value})}/>
-                <input type="text" placeholder="Author"
+                <Input type="text" placeholder="Author"
                        onChange={event => this.setState({author: event.target.value})}/>
-                <input type="submit"/>
+                <Button className="rsButton" type="submit" color="success">
+                    Create
+                </Button>
             </form>
         )
     }

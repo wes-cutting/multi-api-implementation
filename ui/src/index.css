@@ -12,5 +12,10 @@ body {
 }
 
 .book {
-  border-style: double;
+  margin: .5em;
+  box-shadow: 10px 10px 50px #263238;
+}
+
+.rsButton {
+  margin: 3px;
 }
